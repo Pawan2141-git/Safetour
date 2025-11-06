@@ -1,0 +1,166 @@
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import './Auth.css';
+
+const Register = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    userType: 'user' // default to user
+  });
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const { name, email, password, confirmPassword, userType } = formData;
+
+  const onChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    // Basic validation
+    if (!name || !email || !password || !confirmPassword) {
+      setError('Please fill in all fields');
+      setLoading(false);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      setLoading(false);
+      return;
+    }
+
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters');
+      setLoading(false);
+      return;
+    }
+
+    // Simulate API call
+    try {
+      // This is where you would normally make an API call to register the user
+        setTimeout(() => {
+        // Admin route removed: always navigate to user dashboard
+        navigate('/user/dashboard');
+        setLoading(false);
+      }, 1000);
+    } catch (err) {
+      setError('Registration failed');
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="auth-container">
+      <div className="auth-card">
+        <div className="auth-header">
+          <h2>Create Account</h2>
+          <p>Sign up for a SafeTour account</p>
+        </div>
+
+        {error && <div className="alert alert-danger">{error}</div>}
+
+        <form onSubmit={onSubmit} className="auth-form">
+          <div className="form-group">
+            <label htmlFor="userType">Register As</label>
+            <select
+              name="userType"
+              value={userType}
+              onChange={onChange}
+              className="form-control"
+            >
+              <option value="user">User</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="name">Full Name</label>
+            <input
+              type="text"
+              name="name"
+              value={name}
+              onChange={onChange}
+              className="form-control"
+              placeholder="Enter your full name"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="email">Email Address</label>
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={onChange}
+              className="form-control"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={onChange}
+              className="form-control"
+              placeholder="Create a password"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              name="confirmPassword"
+              value={confirmPassword}
+              onChange={onChange}
+              className="form-control"
+              placeholder="Confirm your password"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label className="checkbox-container">
+              <input type="checkbox" required />
+              <span className="checkmark"></span>
+              I agree to the <Link to="/terms">Terms of Service</Link> and <Link to="/privacy">Privacy Policy</Link>
+            </label>
+          </div>
+
+          <button 
+            type="submit" 
+            className="btn btn-primary auth-btn"
+            disabled={loading}
+          >
+            {loading ? 'Creating Account...' : 'Sign Up'}
+          </button>
+        </form>
+
+        <div className="auth-footer">
+          <p>
+            Already have an account?{' '}
+            <Link to="/login" className="auth-link">
+              Login
+            </Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Register;

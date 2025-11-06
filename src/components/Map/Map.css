@@ -1,0 +1,198 @@
+.map-container {
+  width: 100%;
+  height: 500px;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.marker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.marker:hover {
+  transform: scale(1.2);
+}
+
+.popup-content {
+  padding: 10px;
+}
+
+.popup-content h3 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+}
+
+.popup-content p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.status.safe {
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.status.warning {
+  color: #FFC107;
+  font-weight: bold;
+}
+
+.status.danger {
+  color: #F44336;
+  font-weight: bold;
+}
+
+.incident.medical {
+  color: #F44336;
+  font-weight: bold;
+}
+
+.incident.theft {
+  color: #FF9800;
+  font-weight: bold;
+}
+
+.incident.accident {
+  color: #9C27B0;
+  font-weight: bold;
+}
+
+.alert {
+  color: #FFC107;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.geo-fence-label {
+  background: rgba(76, 175, 80, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Leaflet specific styles */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  border-radius: 1rem;
+}
+
+.custom-marker, .incident-marker {
+  background: none;
+  border: none;
+}
+
+/* Dark mode map container */
+body.dark-mode .map-container {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Popup styles */
+.leaflet-popup-content {
+  padding: 15px !important;
+  border-radius: 8px !important;
+}
+
+.popup-content h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Dark mode popup content */
+body.dark-mode .popup-content h3 {
+  color: #f0f0f0;
+}
+
+.popup-content p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Dark mode popup content */
+body.dark-mode .popup-content p {
+  color: #ccc;
+}
+
+.status {
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.status.safe {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4CAF50;
+}
+
+.status.warning {
+  background: rgba(255, 193, 7, 0.2);
+  color: #FFC107;
+}
+
+.status.danger {
+  background: rgba(244, 67, 54, 0.2);
+  color: #F44336;
+}
+
+.incident {
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.incident.medical {
+  background: rgba(244, 67, 54, 0.2);
+  color: #F44336;
+}
+
+.incident.theft {
+  background: rgba(255, 152, 0, 0.2);
+  color: #FF9800;
+}
+
+.incident.accident {
+  background: rgba(156, 39, 176, 0.2);
+  color: #9C27B0;
+}
+
+/* Leaflet controls */
+.leaflet-control {
+  border-radius: 8px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Dark mode controls */
+body.dark-mode .leaflet-control {
+  background: rgba(30, 30, 40, 0.9) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+}
+
+.leaflet-control a {
+  color: #333 !important;
+}
+
+/* Dark mode control links */
+body.dark-mode .leaflet-control a {
+  color: #f0f0f0 !important;
+}
+
+.leaflet-control a:hover {
+  background: rgba(102, 126, 234, 0.1) !important;
+}
