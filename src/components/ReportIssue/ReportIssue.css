@@ -1,6 +1,19 @@
-.report-container{min-height:100vh;background:#0a0e1a;padding:2rem;position:relative;overflow:hidden}
-.report-container::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 20% 50%,rgba(0,229,255,0.1) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(0,255,136,0.08) 0%,transparent 50%);pointer-events:none;animation:gradientShift 15s ease infinite}
+.report-container{min-height:100vh;background:#0a0a0f;padding:2rem;position:relative;overflow:hidden}
+.report-container::before{content:'';position:absolute;width:100%;height:100%;background:radial-gradient(2px 2px at 20% 30%,#fff,transparent),radial-gradient(2px 2px at 60% 70%,#fff,transparent),radial-gradient(1px 1px at 50% 50%,#fff,transparent),radial-gradient(1px 1px at 80% 10%,#fff,transparent),radial-gradient(2px 2px at 90% 60%,#fff,transparent),radial-gradient(1px 1px at 33% 80%,#fff,transparent),radial-gradient(1px 1px at 15% 90%,#fff,transparent);background-size:200% 200%;animation:stars 20s linear infinite;opacity:.6;z-index:0}
+@keyframes stars{0%{background-position:0 0,40% 60%,50% 50%,80% 10%,90% 60%,33% 80%,15% 90%}100%{background-position:100% 100%,140% 160%,150% 150%,180% 110%,190% 160%,133% 180%,115% 190%}}
+.gradient-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.6;animation:float 20s ease-in-out infinite;z-index:0}
+.orb-1{width:500px;height:500px;background:radial-gradient(circle,#667eea 0%,transparent 70%);top:-10%;left:-10%;animation-delay:0s}
+.orb-2{width:400px;height:400px;background:radial-gradient(circle,#764ba2 0%,transparent 70%);top:40%;right:-5%;animation-delay:5s}
+.orb-3{width:450px;height:450px;background:radial-gradient(circle,#f093fb 0%,transparent 70%);bottom:-10%;left:30%;animation-delay:10s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-30px) scale(1.1)}66%{transform:translate(-20px,20px) scale(0.9)}}
 .report-wrapper{max-width:1400px;margin:0 auto;position:relative;z-index:1}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;margin-bottom:3rem}
+.feature-card-new{background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border-radius:24px;padding:40px;text-align:center;border:1px solid rgba(255,255,255,0.1);transition:all 0.4s;cursor:pointer}
+.feature-card-new:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.2);box-shadow:0 20px 60px rgba(102,126,234,0.3);transform:translateY(-10px)}
+.feature-icon-new{width:70px;height:70px;margin:0 auto 25px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(102,126,234,0.2),rgba(118,75,162,0.2));border-radius:16px;font-size:32px;transition:all 0.3s}
+.feature-card-new:hover .feature-icon-new{transform:scale(1.1) rotate(5deg);background:linear-gradient(135deg,rgba(102,126,234,0.3),rgba(118,75,162,0.3))}
+.feature-card-new h3{font-size:1.5rem;margin-bottom:15px;color:#fff;font-weight:700}
+.feature-card-new p{color:rgba(255,255,255,0.6);line-height:1.7;font-size:1rem}
 .report-header{text-align:center;margin-bottom:3rem}
 .header-icon{width:64px;height:64px;margin:0 auto 1rem;color:#00e5ff;filter:drop-shadow(0 0 20px rgba(0,229,255,0.5));animation:pulse 2s ease-in-out infinite}
 .header-title{font-size:3rem;font-weight:800;background:linear-gradient(135deg,#00e5ff,#00ff88);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.5rem}

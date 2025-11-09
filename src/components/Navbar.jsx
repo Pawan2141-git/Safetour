@@ -7,6 +7,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   // Check for saved theme preference or respect OS preference
@@ -21,7 +22,11 @@ const Navbar = () => {
     // check if a demo user object exists in localStorage
     try {
       const raw = localStorage.getItem('safetour:user');
-      if (raw) setLoggedIn(true);
+      if (raw) {
+        const userData = JSON.parse(raw);
+        setUser(userData);
+        setLoggedIn(true);
+      }
     } catch (e) {}
   }, []);
 
@@ -43,7 +48,13 @@ const Navbar = () => {
   const logout = () => {
     try { localStorage.removeItem('safetour:user'); } catch (e) {}
     setLoggedIn(false);
+    setUser(null);
     navigate('/');
+  };
+
+  const getInitials = () => {
+    if (!user || !user.name) return 'U';
+    return user.name.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase();
   };
 
   return (
@@ -69,13 +80,6 @@ const Navbar = () => {
               About
             </Link>
           </li>
-          {loggedIn && (
-            <li className="nav-item">
-              <Link to="/profile" className="nav-links">
-                Profile
-              </Link>
-            </li>
-          )}
           <li className="nav-item">
             <Link to="/contact" className="nav-links">
               Contact
@@ -96,6 +100,15 @@ const Navbar = () => {
             </li>
           )}
         </ul>
+        {loggedIn && (
+          <Link to="/profile" className="profile-circle">
+            {user?.avatar ? (
+              <img src={user.avatar} alt="Profile" className="profile-avatar" />
+            ) : (
+              <div className="profile-avatar">{getInitials()}</div>
+            )}
+          </Link>
+        )}
         <div className="nav-icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           <i className={isMenuOpen ? 'fas fa-times' : 'fas fa-bars'}></i>
         </div>

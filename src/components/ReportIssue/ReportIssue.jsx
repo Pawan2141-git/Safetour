@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
-import { AlertCircle, MapPin, Upload, Send, CheckCircle } from 'lucide-react';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import './ReportIssue.css';
@@ -53,6 +52,10 @@ const ReportIssue = () => {
 
   return (
     <div className="report-container">
+      <div className="gradient-orb orb-1"></div>
+      <div className="gradient-orb orb-2"></div>
+      <div className="gradient-orb orb-3"></div>
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -64,10 +67,28 @@ const ReportIssue = () => {
           transition={{ delay: 0.2 }}
           className="report-header"
         >
-          <AlertCircle className="header-icon" />
+          <span className="header-icon">⚠️</span>
           <h1 className="header-title">Report Safety Issue</h1>
           <p className="header-subtitle">Help us keep travelers safe by reporting incidents</p>
         </motion.div>
+
+        <div className="features-grid">
+          <div className="feature-card-new">
+            <div className="feature-icon-new">🚨</div>
+            <h3>Quick Response</h3>
+            <p>Immediate alert to authorities and emergency services</p>
+          </div>
+          <div className="feature-card-new">
+            <div className="feature-icon-new">📸</div>
+            <h3>Photo Evidence</h3>
+            <p>Upload photos to support your incident report</p>
+          </div>
+          <div className="feature-card-new">
+            <div className="feature-icon-new">📍</div>
+            <h3>Location Tracking</h3>
+            <p>Precise location marking for faster assistance</p>
+          </div>
+        </div>
 
         <div className="report-content">
           <motion.form
@@ -154,7 +175,7 @@ const ReportIssue = () => {
                   id="photo-upload"
                 />
                 <label htmlFor="photo-upload" className="upload-label">
-                  <Upload className="upload-icon" />
+                  <span className="upload-icon">📤</span>
                   <span>{photo ? 'Photo Selected' : 'Choose Photo'}</span>
                 </label>
                 {photo && (
@@ -175,7 +196,7 @@ const ReportIssue = () => {
               type="submit"
               className="submit-btn"
             >
-              <Send className="btn-icon" />
+              <span className="btn-icon">📨</span>
               Submit Report
             </motion.button>
           </motion.form>
@@ -187,7 +208,7 @@ const ReportIssue = () => {
             className="map-section"
           >
             <div className="map-header">
-              <MapPin className="map-icon" />
+              <span className="map-icon">📍</span>
               <h3 className="map-title">Mark Location on Map</h3>
             </div>
             <div className="map-container">
@@ -208,7 +229,7 @@ const ReportIssue = () => {
           exit={{ opacity: 0, y: 50 }}
           className="toast"
         >
-          <CheckCircle className="toast-icon" />
+          <span className="toast-icon">✅</span>
           <div>
             <p className="toast-title">Report Submitted!</p>
             <p className="toast-message">We'll review your report shortly</p>

@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import LeafletMapView from './Map/LeafletMapView';
 import './UserProfileTailwind.css';
 
 export default function UserProfileTailwind() {
+  const navigate = useNavigate();
   // Load user from localStorage (simulates logged-in user); fallback to mock
   const [user, setUser] = useState(() => {
     try {
@@ -103,7 +105,11 @@ export default function UserProfileTailwind() {
   return (
     <div className="min-h-screen relative bg-slate-900 text-slate-100">
       {/* Gradient animated shapes */}
-      <div className="profile-bg" aria-hidden />
+      <div className="profile-bg" aria-hidden>
+        <div className="gradient-orb orb-1"></div>
+        <div className="gradient-orb orb-2"></div>
+        <div className="gradient-orb orb-3"></div>
+      </div>
 
       <div className="max-w-6xl mx-auto px-6 py-16">
         <motion.div initial={{ opacity:0, y:10 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.6 }} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -197,9 +203,9 @@ export default function UserProfileTailwind() {
               <div className="glass p-4 rounded-2xl">
                 <h4 className="text-white font-semibold mb-2">Quick Actions</h4>
                 <div className="flex flex-col gap-3">
-                  <button className="btn">Request Guide</button>
-                  <button className="btn">Check-in</button>
-                  <button className="btn">Report Issue</button>
+                  <button className="btn" onClick={() => navigate('/request-guide')}>Request Guide</button>
+                  <button className="btn" onClick={() => navigate('/checkin')}>Check-in</button>
+                  <button className="btn" onClick={() => navigate('/report-issue')}>Report Issue</button>
                 </div>
               </div>
             </motion.div>

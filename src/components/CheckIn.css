@@ -1,0 +1,45 @@
+.checkin-container{min-height:100vh;background:#0a0a0f;padding-top:80px;position:relative;overflow:hidden}
+.checkin-container::before{content:'';position:absolute;width:100%;height:100%;background:radial-gradient(2px 2px at 20% 30%,#fff,transparent),radial-gradient(2px 2px at 60% 70%,#fff,transparent),radial-gradient(1px 1px at 50% 50%,#fff,transparent),radial-gradient(1px 1px at 80% 10%,#fff,transparent),radial-gradient(2px 2px at 90% 60%,#fff,transparent),radial-gradient(1px 1px at 33% 80%,#fff,transparent),radial-gradient(1px 1px at 15% 90%,#fff,transparent);background-size:200% 200%;animation:stars 20s linear infinite;opacity:.6;z-index:0}
+@keyframes stars{0%{background-position:0 0,40% 60%,50% 50%,80% 10%,90% 60%,33% 80%,15% 90%}100%{background-position:100% 100%,140% 160%,150% 150%,180% 110%,190% 160%,133% 180%,115% 190%}}
+.gradient-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.6;animation:float 20s ease-in-out infinite}
+.orb-1{width:500px;height:500px;background:radial-gradient(circle,#667eea 0%,transparent 70%);top:-10%;left:-10%;animation-delay:0s}
+.orb-2{width:400px;height:400px;background:radial-gradient(circle,#764ba2 0%,transparent 70%);top:40%;right:-5%;animation-delay:5s}
+.orb-3{width:450px;height:450px;background:radial-gradient(circle,#f093fb 0%,transparent 70%);bottom:-10%;left:30%;animation-delay:10s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-30px) scale(1.1)}66%{transform:translate(-20px,20px) scale(0.9)}}
+.checkin-hero{text-align:center;padding:60px 20px;color:#fff;position:relative;z-index:1}
+.checkin-hero h1{font-size:3rem;margin-bottom:20px;font-weight:800}
+.checkin-hero p{font-size:1.3rem;opacity:0.9}
+.features-grid{max-width:1200px;margin:0 auto;padding:0 20px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;position:relative;z-index:1}
+.feature-card-new{background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border-radius:24px;padding:40px;text-align:center;border:1px solid rgba(255,255,255,0.1);transition:all 0.4s;cursor:pointer}
+.feature-card-new:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.2);box-shadow:0 20px 60px rgba(102,126,234,0.3);transform:translateY(-10px)}
+.feature-icon-new{width:70px;height:70px;margin:0 auto 25px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(102,126,234,0.2),rgba(118,75,162,0.2));border-radius:16px;font-size:32px;transition:all 0.3s}
+.feature-card-new:hover .feature-icon-new{transform:scale(1.1) rotate(5deg);background:linear-gradient(135deg,rgba(102,126,234,0.3),rgba(118,75,162,0.3))}
+.feature-card-new h3{font-size:1.5rem;margin-bottom:15px;color:#fff;font-weight:700}
+.feature-card-new p{color:rgba(255,255,255,0.6);line-height:1.7;font-size:1rem}
+.checkin-content{max-width:1000px;margin:0 auto;padding:40px 20px;display:grid;grid-template-columns:1fr 1fr;gap:30px;position:relative;z-index:1}
+.checkin-card{background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);padding:40px;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+.checkin-card h2{margin-bottom:30px;color:#fff;font-size:1.8rem}
+.location-btn{width:100%;padding:15px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:10px;font-size:1.1rem;font-weight:700;cursor:pointer;transition:all 0.3s;margin-bottom:20px}
+.location-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(102,126,234,0.4)}
+.location-btn:disabled{opacity:0.6;cursor:not-allowed}
+.location-info{background:rgba(16,185,129,0.1);border:2px solid rgba(16,185,129,0.3);padding:15px;border-radius:10px;margin-bottom:20px}
+.location-info p{margin:5px 0;color:#10b981;font-weight:600}
+.coords{font-size:0.9rem;font-family:monospace}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;margin-bottom:8px;color:#e2e8f0;font-weight:600}
+.form-group textarea{width:100%;padding:12px;background:rgba(15,23,36,0.8);border:1px solid rgba(255,255,255,0.2);border-radius:8px;font-size:1rem;color:#fff;resize:vertical}
+.checkin-btn{width:100%;padding:15px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;border:none;border-radius:10px;font-size:1.1rem;font-weight:700;cursor:pointer;transition:all 0.3s}
+.checkin-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(16,185,129,0.4)}
+.checkin-btn:disabled{opacity:0.5;cursor:not-allowed}
+.checkin-history{background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);padding:40px;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+.checkin-history h2{margin-bottom:30px;color:#fff;font-size:1.8rem}
+.empty{text-align:center;color:#94a3b8;padding:40px}
+.checkin-list{display:flex;flex-direction:column;gap:15px}
+.checkin-item{display:flex;gap:15px;padding:15px;background:rgba(255,255,255,0.05);border-radius:12px;border:1px solid rgba(255,255,255,0.1);transition:all 0.3s}
+.checkin-item:hover{transform:translateX(5px);box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+.checkin-icon{font-size:2rem}
+.checkin-details{flex:1}
+.checkin-time{font-weight:600;color:#fff;margin-bottom:5px}
+.checkin-address{color:#94a3b8;font-size:0.9rem;margin-bottom:5px}
+.checkin-note{color:#e2e8f0;font-size:0.9rem;font-style:italic;background:rgba(255,255,255,0.05);padding:8px;border-radius:6px;margin-top:5px}
+@media (max-width:768px){.checkin-content{grid-template-columns:1fr}.checkin-hero h1{font-size:2rem}}

@@ -11,6 +11,9 @@ import Register from './components/Auth/Register';
 import UserDashboard from './components/Auth/UserDashboard';
 import AdminDashboard from './components/Admin/Dashboard';
 import UserProfileTailwind from './components/UserProfileTailwind';
+import RequestGuide from './components/RequestGuide';
+import CheckIn from './components/CheckIn';
+import ReportIssue from './components/ReportIssue/ReportIssue';
 import './App.css';
 import './components/Auth/Dashboard.css';
 // Use the cleaned admin stylesheet temporarily while the original Admin.css is repaired
@@ -93,6 +96,36 @@ function App() {
           />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/profile" element={<UserProfileTailwind />} />
+          <Route
+            path="/request-guide"
+            element={
+              <>
+                <Navbar />
+                <RequestGuide />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/checkin"
+            element={
+              <>
+                <Navbar />
+                <CheckIn />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/report-issue"
+            element={
+              <>
+                <Navbar />
+                <ReportIssue />
+                <Footer />
+              </>
+            }
+          />
         </Routes>
       </div>
     </Router>

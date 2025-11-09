@@ -380,22 +380,11 @@ const Dashboard = () => {
   }, [settings.soundAlerts, alertStats.activeAlerts]);
 
   return (
-    <div className="admin-container" style={{background:'#0a0a0f',color:'#0f1724',position:'relative'}}>
-      {/* Stars background */}
-      <div className="stars-container">
-        {[...Array(150)].map((_, i) => (
-          <div
-            key={i}
-            className="star"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 2}s`
-            }}
-          />
-        ))}
-      </div>
+    <div className="admin-container" style={{background:'#0a0a0f',color:'#fff',position:'relative'}}>
+      <div className="gradient-orb orb-1"></div>
+      <div className="gradient-orb orb-2"></div>
+      <div className="gradient-orb orb-3"></div>
+
       
       {/* Sidebar */}
       <aside className={`admin-sidebar ${sidebarOpen ? 'open' : ''}`}>
