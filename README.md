@@ -1,30 +1,104 @@
+# SafeTour - Smart Tourist Safety Monitoring System
 
-**SafeTour** is a smart, AI-powered web platform designed to enhance tourist safety through **real-time monitoring**, **geo-fencing**, and **incident response**.  
-It combines modern frontend technologies with intelligent design to ensure travelers remain safe, informed, and connected during their journeys.  
+AI-powered safety platform for travelers with real-time monitoring, geo-fencing, and emergency response.
 
-This project focuses on **frontend implementation only** (built using React + Vite + Tailwind CSS) with smooth **animations**, **interactive maps**, and a **smart admin dashboard**.  
+## 🚀 Features
+
+- 🛡️ **AI Protection** - Real-time threat detection
+- 📍 **Geo-Fencing** - Smart virtual boundaries
+- 🚨 **SOS Alerts** - Instant emergency notifications
+- 👤 **User Profile** - Personalized dashboard
+- 🗺️ **Request Guide** - Professional tour guides
+- ✅ **Check-In** - Location sharing with loved ones
+- 📝 **Report Issue** - Safety incident reporting
+- 👨‍💼 **Admin Panel** - Complete management dashboard
+
+## 🛠️ Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/Pawan2141-git/Safetour.git
+
+# Navigate to project directory
+cd safetour
+
+# Install dependencies
+npm install
+
+# Start development server
+npm start
+```
+
+## 🌐 Local Development
+
+After running `npm start`, the application will be available at:
+
+**🔗 http://localhost:3000**
+
+### Available Routes:
+- Home: `http://localhost:3000/`
+- Features: `http://localhost:3000/features`
+- About: `http://localhost:3000/about`
+- Contact: `http://localhost:3000/contact`
+- Login: `http://localhost:3000/login`
+- Register: `http://localhost:3000/register`
+- User Profile: `http://localhost:3000/profile`
+- Request Guide: `http://localhost:3000/request-guide`
+- Check-In: `http://localhost:3000/checkin`
+- Report Issue: `http://localhost:3000/report-issue`
+- Admin Dashboard: `http://localhost:3000/admin/dashboard`
+
+## 📦 Tech Stack
+
+- **Frontend:** React.js
+- **Styling:** CSS3, Tailwind CSS
+- **Animations:** Framer Motion
+- **Maps:** Leaflet, React Leaflet
+- **Icons:** Font Awesome
+- **Routing:** React Router DOM
+
+## 🎨 UI Features
+
+- Animated star backgrounds
+- Gradient orbs
+- Glass morphism effects
+- Smooth transitions
+- Responsive design
+- Dark mode support
+
+## 👥 User Roles
+
+1. **Tourist** - Access safety features, check-in, request guides
+2. **Admin** - Manage users, tours, alerts, and system settings
+
+## 🔐 Demo Credentials
+
+Login with any email to test the application (demo mode).
+
+## 📱 Screenshots
+
+- Modern animated UI
+- Real-time location tracking
+- Interactive maps
+- Comprehensive admin dashboard
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is open source and available under the MIT License.
+
+## 👨‍💻 Developer
+
+Developed by Pawan Kumar
+
+## 🔗 Links
+
+- **GitHub:** https://github.com/Pawan2141-git/Safetour
+- **Live Demo:** http://localhost:3000 (after running locally)
 
 ---
 
-## 🚀 Features  
-
-✅ **AI-Powered Safety Awareness** – Detect unsafe zones and generate alerts.  
-✅ **Geo-Fencing Map Integration** – Track users in safe zones using Leaflet / Mapbox.  
-✅ **User Authentication UI** – Login, Register, and Profile sections for travelers.  
-✅ **Incident Reporting System** – Tourists can instantly report emergencies.  
-✅ **Admin Dashboard** – Manage users, tours, and view real-time safety analytics.  
-✅ **Animated UI / UX** – Smooth transitions using Framer Motion and Tailwind effects.  
-✅ **Fully Responsive Design** – Optimized for desktop and mobile devices.  
-
----
-
-## 🧩 Tech Stack  
-
-| Category | Technology |
-|-----------|-------------|
-| **Frontend Framework** | React + Vite |
-| **Styling** | Tailwind CSS |
-| **Map Integration** | Leaflet.js / Mapbox API |
-| **Animations** | Framer Motion / GSAP |
-| **Icons** | Lucide / HeroIcons |
-| **State Management** | React Hooks / Context API |
+Made with ❤️ for safer travel experiences
