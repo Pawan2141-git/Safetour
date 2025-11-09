@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +69,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+=======
+# Safetour
+SafeTour is a modern AI-powered web application designed to enhance tourist safety through real-time monitoring, geo-fencing, and smart incident response. The system ensures safe travel experiences by continuously tracking user locations, detecting potential risks, and alerting both tourists and authorities instantly.
+>>>>>>> 640c597638c76b99c5f129a9c198848683cca5b0
