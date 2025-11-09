@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Logo from './Logo';
 import './Navbar.css';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   // Check for saved theme preference or respect OS preference
   useEffect(() => {
@@ -14,6 +17,12 @@ const Navbar = () => {
     if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
       setDarkMode(true);
     }
+
+    // check if a demo user object exists in localStorage
+    try {
+      const raw = localStorage.getItem('safetour:user');
+      if (raw) setLoggedIn(true);
+    } catch (e) {}
   }, []);
 
   // Apply theme changes
@@ -31,11 +40,18 @@ const Navbar = () => {
     setDarkMode(!darkMode);
   };
 
+  const logout = () => {
+    try { localStorage.removeItem('safetour:user'); } catch (e) {}
+    setLoggedIn(false);
+    navigate('/');
+  };
+
   return (
     <nav className="navbar">
       <div className="nav-container">
         <Link to="/" className="nav-logo">
-          SafeTour
+          <Logo size={45} />
+          <span>SafeTour</span>
         </Link>
         <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
           <li className="nav-item">
@@ -53,31 +69,33 @@ const Navbar = () => {
               About
             </Link>
           </li>
+          {loggedIn && (
+            <li className="nav-item">
+              <Link to="/profile" className="nav-links">
+                Profile
+              </Link>
+            </li>
+          )}
           <li className="nav-item">
             <Link to="/contact" className="nav-links">
               Contact
             </Link>
           </li>
           {/* Auth Links */}
-          <li className="nav-item">
-            <Link to="/login" className="nav-links">
-              Login
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/register" className="nav-links">
-              Register
-            </Link>
-          </li>
-        </ul>
-        {/* Dark Mode Toggle */}
-        <button className="theme-toggle" onClick={toggleTheme}>
-          {darkMode ? (
-            <i className="fas fa-sun"></i>
+          {!loggedIn ? (
+            <li className="nav-item">
+              <Link to="/login" className="nav-links">
+                Login
+              </Link>
+            </li>
           ) : (
-            <i className="fas fa-moon"></i>
+            <li className="nav-item">
+              <button className="nav-links" onClick={logout} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
+                Logout
+              </button>
+            </li>
           )}
-        </button>
+        </ul>
         <div className="nav-icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           <i className={isMenuOpen ? 'fas fa-times' : 'fas fa-bars'}></i>
         </div>

@@ -85,6 +85,8 @@ const createIncidentIcon = (color) => {
 // Create a wrapper component for the map to ensure proper React context
 const MapWrapper = () => {
   const [userLocations, setUserLocations] = useState(mockUserLocations);
+  const [currentUserLocation, setCurrentUserLocation] = useState(null);
+  const [mapCenter, setMapCenter] = useState([28.6139, 77.2090]);
   const mapRef = useRef();
 
   // Function to check if user is inside a geo-fence
@@ -100,6 +102,22 @@ const MapWrapper = () => {
     const distance = earthRadius * c;
     return distance <= fence.radius;
   };
+
+  // Get user's current location
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setCurrentUserLocation({ latitude, longitude });
+          setMapCenter([latitude, longitude]);
+        },
+        (error) => {
+          console.log('Location access denied, using default location');
+        }
+      );
+    }
+  }, []);
 
   // Function to simulate real-time tracking
   useEffect(() => {
@@ -142,10 +160,10 @@ const MapWrapper = () => {
 
   return (
     <MapContainer
-      center={[28.6139, 77.2090]}
-      zoom={13}
+      center={mapCenter}
+      zoom={15}
       style={{ height: '100%', width: '100%' }}
-      scrollWheelZoom={false}
+      scrollWheelZoom={true}
       ref={mapRef}
     >
       <TileLayer
@@ -167,23 +185,34 @@ const MapWrapper = () => {
         </Circle>
       ))}
       
-      {/* User location markers */}
-      {userLocations.map(user => (
+      {/* Current user location marker */}
+      {currentUserLocation && (
         <Marker
-          key={user.id}
-          position={[user.latitude, user.longitude]}
-          icon={createCustomIcon(getMarkerColor(user.status))}
+          position={[currentUserLocation.latitude, currentUserLocation.longitude]}
+          icon={createCustomIcon('#2196F3')}
         >
           <Popup>
             <div className="popup-content">
-              <h3>{user.name}</h3>
-              <p>Status: <span className={`status ${user.status}`}>{user.status}</span></p>
-              <p>Location: {user.latitude.toFixed(4)}, {user.longitude.toFixed(4)}</p>
-              {user.status === 'warning' && <p className="alert">⚠️ Outside safe zone!</p>}
+              <h3>Your Location</h3>
+              <p>Status: <span className="status safe">Active</span></p>
+              <p>Location: {currentUserLocation.latitude.toFixed(4)}, {currentUserLocation.longitude.toFixed(4)}</p>
             </div>
           </Popup>
         </Marker>
-      ))}
+      )}
+      
+      {/* Geo-fence circle around user */}
+      {currentUserLocation && (
+        <Circle
+          center={[currentUserLocation.latitude, currentUserLocation.longitude]}
+          radius={500}
+          fillColor="rgba(33, 150, 243, 0.1)"
+          color="#2196F3"
+          weight={2}
+        >
+          <Popup>Your Safe Zone (500m radius)</Popup>
+        </Circle>
+      )}
       
       {/* Incident markers */}
       {mockIncidents.map(incident => (

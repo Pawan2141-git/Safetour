@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Logo from './Logo';
 import './Footer.css';
 
 const Footer = () => {
@@ -7,7 +8,10 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-section">
-          <h3>SafeTour</h3>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '15px' }}>
+            <Logo size={50} />
+            <h3 style={{ margin: 0 }}>SafeTour</h3>
+          </div>
           <p>Protecting travelers with smart technology</p>
           <div className="social-icons">
             <a href="https://twitter.com/safetour" target="_blank" rel="noopener noreferrer">

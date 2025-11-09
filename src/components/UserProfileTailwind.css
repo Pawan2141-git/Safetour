@@ -1,0 +1,41 @@
+/* Minimal helpers for the Tailwind-based UserProfile component. 
+   Tailwind is loaded via CDN for quick development. These rules only add
+   a subtle backdrop and animated gradient shapes behind the page.
+*/
+
+.profile-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(ellipse at 10% 10%, rgba(16,185,129,0.08), transparent 10%), radial-gradient(ellipse at 90% 80%, rgba(99,102,241,0.06), transparent 15%);
+  pointer-events: none;
+}
+
+.glass {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px) saturate(120%);
+}
+
+.btn-primary {
+  background: linear-gradient(90deg,#06b6d4,#3b82f6);
+  color: #042a2b;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+}
+
+.btn {
+  background: rgba(255,255,255,0.02);
+  color: #e6eef6;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* small responsive fix to keep backgrounds from overlapping nav */
+@media (min-width: 768px) {
+  .profile-bg { background-position: left top, right bottom; }
+}

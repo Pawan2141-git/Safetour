@@ -1,0 +1,5 @@
+/* Legacy UserProfile.css retired.
+   Styles are now implemented in the Tailwind-based component (`UserProfileTailwind`).
+   This file is intentionally left empty to avoid PostCSS parse errors while still
+   preserving the original filename for reference. */
+

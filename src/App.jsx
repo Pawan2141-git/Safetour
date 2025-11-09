@@ -10,9 +10,11 @@ import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import UserDashboard from './components/Auth/UserDashboard';
 import AdminDashboard from './components/Admin/Dashboard';
+import UserProfileTailwind from './components/UserProfileTailwind';
 import './App.css';
 import './components/Auth/Dashboard.css';
-import './components/Admin/Admin.css';
+// Use the cleaned admin stylesheet temporarily while the original Admin.css is repaired
+import './components/Admin/Admin.clean.css';
 
 function App() {
   return (
@@ -90,6 +92,7 @@ function App() {
             }
           />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/profile" element={<UserProfileTailwind />} />
         </Routes>
       </div>
     </Router>

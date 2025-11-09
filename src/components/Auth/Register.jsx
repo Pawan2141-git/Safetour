@@ -47,9 +47,19 @@ const Register = () => {
     // Simulate API call
     try {
       // This is where you would normally make an API call to register the user
-        setTimeout(() => {
-        // Admin route removed: always navigate to user dashboard
-        navigate('/user/dashboard');
+      setTimeout(() => {
+        // Create a demo user object and persist to localStorage
+        const userObj = {
+          id: Date.now(),
+          name,
+          email,
+          role: userType,
+          joined: new Date().toISOString().slice(0,10)
+        };
+        try { localStorage.setItem('safetour:user', JSON.stringify(userObj)); } catch(e) {}
+
+        // After registration, go to the profile page for the new user
+        navigate('/profile');
         setLoading(false);
       }, 1000);
     } catch (err) {
@@ -60,6 +70,16 @@ const Register = () => {
 
   return (
     <div className="auth-container">
+      <div className="gradient-bg">
+        <div className="gradient-orb orb-1"></div>
+        <div className="gradient-orb orb-2"></div>
+        <div className="gradient-orb orb-3"></div>
+      </div>
+      <div className="stars-container">
+        {[...Array(100)].map((_, i) => (
+          <div key={i} className="star" style={{left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%`, animationDelay: `${Math.random() * 3}s`, animationDuration: `${2 + Math.random() * 2}s`}} />
+        ))}
+      </div>
       <div className="auth-card">
         <div className="auth-header">
           <h2>Create Account</h2>
