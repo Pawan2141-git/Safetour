@@ -68,5 +68,7 @@ CREATE TABLE fences (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+SELECT * FROM users;
+
 -- seed admin user (password: Password123!)
 -- NOTE: password here must be hashed when using bcrypt in the backend. This is an example to insert later via the API or by hashing first.
