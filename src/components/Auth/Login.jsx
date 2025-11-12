@@ -18,43 +18,36 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // inside Login.jsx: import useNavigate at top already present
   const onSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
 
-    // Basic validation
-    if (!email || !password) {
-      setError('Please fill in all fields');
+    try {
+      const resp = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+     });
+    const data = await resp.json();
+    if (!resp.ok) {
+      setError(data.message || 'Login failed');
       setLoading(false);
       return;
     }
-
-    // Simulate API call
-    try {
-      // This is where you would normally make an API call to authenticate the user
-      setTimeout(() => {
-        // Create a simple user object and persist to localStorage for demo (mock auth)
-        const userObj = {
-          id: Date.now(),
-          name: email.split('@')[0].replace(/\.|_/g, ' ').replace(/(^|\s)\S/g, s => s.toUpperCase()),
-          email,
-          role: userType,
-          joined: new Date().toISOString().slice(0,10)
-        };
-
-        try { localStorage.setItem('safetour:user', JSON.stringify(userObj)); } catch(e) {}
-
-        // Navigate based on user type: admin to admin dashboard, users to profile
-        const dashboardPath = userType === 'admin' ? '/admin/dashboard' : '/profile';
-        navigate(dashboardPath);
-        setLoading(false);
-      }, 1000);
-    } catch (err) {
-      setError('Invalid credentials');
-      setLoading(false);
-    }
-  };
+    // save token + user in localStorage for frontend usage
+    localStorage.setItem('safetour:token', data.token);
+    localStorage.setItem('safetour:user', JSON.stringify(data.user));
+    // navigate to home or profile
+    navigate('/');
+  } catch (err) {
+    console.error(err);
+    setError('Server error');
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="auth-container">

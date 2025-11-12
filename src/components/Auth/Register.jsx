@@ -21,52 +21,32 @@ const Register = () => {
   };
 
   const onSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
-
-    // Basic validation
-    if (!name || !email || !password || !confirmPassword) {
-      setError('Please fill in all fields');
+  e.preventDefault();
+  setLoading(true);
+  setError('');
+  try {
+    const resp = await fetch('http://localhost:5000/api/auth/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData) // ensure contains name,email,password,phone
+    });
+    const data = await resp.json();
+    if (!resp.ok) {
+      setError(data.message || 'Registration failed');
       setLoading(false);
       return;
     }
+    localStorage.setItem('safetour:token', data.token);
+    localStorage.setItem('safetour:user', JSON.stringify(data.user));
+    navigate('/');
+  } catch (err) {
+    console.error(err);
+    setError('Server error');
+  } finally {
+    setLoading(false);
+  }
+};
 
-    if (password !== confirmPassword) {
-      setError('Passwords do not match');
-      setLoading(false);
-      return;
-    }
-
-    if (password.length < 6) {
-      setError('Password must be at least 6 characters');
-      setLoading(false);
-      return;
-    }
-
-    // Simulate API call
-    try {
-      // This is where you would normally make an API call to register the user
-      setTimeout(() => {
-        // Create a demo user object and persist to localStorage
-        const userObj = {
-          id: Date.now(),
-          name,
-          email,
-          role: userType,
-          joined: new Date().toISOString().slice(0,10)
-        };
-        try { localStorage.setItem('safetour:user', JSON.stringify(userObj)); } catch(e) {}
-
-        // After registration, go to the profile page for the new user
-        navigate('/profile');
-        setLoading(false);
-      }, 1000);
-    } catch (err) {
-      setError('Registration failed');
-      setLoading(false);
-    }
-  };
 
   return (
     <div className="auth-container">

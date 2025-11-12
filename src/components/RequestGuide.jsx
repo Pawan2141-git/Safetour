@@ -18,21 +18,23 @@ const RequestGuide = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert('Guide request submitted successfully! We will contact you soon.');
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      destination: '',
-      startDate: '',
-      endDate: '',
-      groupSize: '1',
-      language: 'English',
-      specialRequests: ''
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const resp = await fetch('http://localhost:5000/api/guides', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: localStorage.getItem('safetour:token') ? `Bearer ${localStorage.getItem('safetour:token')}` : '' },
+      body: JSON.stringify(formData) // ensure formData has name,email,phone,destination,startDate,endDate,groupSize,language,specialRequests
     });
-  };
+    const data = await resp.json();
+    if (!resp.ok) { alert(data.message || 'Failed'); return; }
+    alert('Guide request submitted!');
+  } catch(err) {
+    console.error(err);
+    alert('Server error');
+  }
+};
+
 
   return (
     <div className="request-guide-container">

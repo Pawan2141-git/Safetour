@@ -22,10 +22,32 @@ export default function UserProfileTailwind() {
   const [editForm, setEditForm] = useState({ name: user.name, email: user.email, phone: user.phone });
   const fileRef = useRef(null);
 
-  useEffect(()=>{
-    // persist user to localStorage for demo
-    try{ localStorage.setItem('safetour:user', JSON.stringify(user)); }catch(e){}
-  },[user]);
+  useEffect(() => {
+  const loadUser = async () => {
+    const token = localStorage.getItem('safetour:token');
+    if (!token) {
+      const raw = localStorage.getItem('safetour:user');
+      if (raw) setUser(JSON.parse(raw));
+      return;
+    }
+    try {
+      const resp = await fetch('http://localhost:5000/api/users/me', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (!resp.ok) {
+        console.error('Failed to load profile');
+        return;
+      }
+      const u = await resp.json();
+      setUser(u);
+      localStorage.setItem('safetour:user', JSON.stringify(u));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  loadUser();
+}, []);
+
 
   const onUpload = async (file) => {
     if (!file) return;

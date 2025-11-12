@@ -33,16 +33,37 @@ const ReportIssue = () => {
   const [photo, setPhoto] = useState(null);
   const [showToast, setShowToast] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-      setFormData({ name: '', email: '', incidentType: '', description: '', location: '' });
-      setPhoto(null);
-      setPosition([20.5937, 78.9629]);
-    }, 3000);
-  };
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const token = localStorage.getItem('safetour:token');
+    const body = {
+      title: formTitle,                // replace with your state names accordingly
+      description: formDescription,
+      latitude: position?.lat,
+      longitude: position?.lng,
+      severity: severity || 'low'
+    };
+    const resp = await fetch('http://localhost:5000/api/reports', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: token ? `Bearer ${token}` : ''
+      },
+      body: JSON.stringify(body)
+    });
+    const data = await resp.json();
+    if (!resp.ok) {
+      alert(data.message || 'Failed to submit report');
+      return;
+    }
+    alert('Report submitted successfully');
+  } catch (err) {
+    console.error(err);
+    alert('Server error');
+  }
+};
+
 
   const handlePhotoChange = (e) => {
     if (e.target.files[0]) {

@@ -17,17 +17,23 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Form submission logic would go here
-    alert('Thank you for your message! We will get back to you soon.');
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const resp = await fetch('http://localhost:5000/api/contacts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, subject, message })
     });
-  };
+    const data = await resp.json();
+    if (!resp.ok) { alert(data.message || 'Failed'); return; }
+    alert('Message sent! We will contact you soon.');
+  } catch (err) {
+    console.error(err);
+    alert('Server error');
+  }
+};
+
 
   return (
     <div className="contact-container">
